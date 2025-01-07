@@ -6,6 +6,8 @@ st.title('Forms of Restriction')
 
 df = utils.load_data()
 
+# perhaps a sunburst of restriction/sector by continent
+
 @st.cache_data
 def prep_data(df):
     df_for = df.groupby(['Year', 'Form of Restriction']).count()['Title'].reset_index()
