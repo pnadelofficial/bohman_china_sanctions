@@ -4,9 +4,10 @@ import plotly.express as px
 import plotly.graph_objects as go
 import utils
 
-st.title('Targeted Individuals and Entities') 
+st.title('Repository of Targeted Individuals and Entities') 
 
 df = utils.load_data()
+utils.apply_css()
 
 ## shading underneath the lines
 #### like in sketch 
@@ -41,6 +42,8 @@ def prep_data(df):
 
     return df_combined, df_ind, df_ent# [['Year', 'Title_x', 'Title_y']].rename(columns={'Title_x': 'Targeted Individuals', 'Title_y': 'Targeted Entities'})
 
+st.write("This graph shows the accumulated number of individuals and entities targeted by PRC sanctions over time.")
+
 df_combined, df_ind, df_ent = prep_data(df)  
 unique_inds = df_ind['Targeted Individuals'].unique().tolist() 
 unique_ents = df_ent['Targeted Entities'].unique().tolist()
@@ -58,17 +61,24 @@ fig.update_xaxes(
     ticktext=[str(year) for year in range(min_year, max_year + 1)]
 )
 
+fig = utils.style_plotly(fig)
 event = st.plotly_chart(fig, on_select="rerun")
 
-st.write("### Search")
+st.write("""
+These fields can be used to search for individuals and entities targeted by China’s sanctions, and to find the sanction announcements in which they are listed.
 
-ind = st.selectbox('Select Individual', unique_inds)
-ind_res = df_ind[(df_ind['Targeted Individuals'].str.contains(ind))]
-utils.show_df_rows(ind_res)
+Please note that this is not a list of “active” sanctions, but a repository of individuals and entities that have at some point in time been targeted by PRC sanctions. In some cases, restrictions against the target may no longer be in force.
+""".strip())
 
-ent = st.selectbox('Select Entity', unique_ents)
-ent_res = df_ent[(df_ent['Targeted Entities'].str.contains(ent))]
-utils.show_df_rows(ent_res)
+ind = st.selectbox('Search Targeted Individuals', unique_inds, index=None, placeholder="Type name here")
+if ind:
+    ind_res = df_ind[(df_ind['Targeted Individuals'].str.contains(ind))]
+    utils.show_df_rows(ind_res)
+
+ent = st.selectbox('Search Targeted Entities', unique_ents, index=None, placeholder="Type name here")
+if ent:
+    ent_res = df_ent[(df_ent['Targeted Entities'].str.contains(ent))]
+    utils.show_df_rows(ent_res)
 # if event:
 #     if event["selection"]["points"]:
 #         year = event['selection']['points'][0]['x']
