@@ -33,9 +33,10 @@ def prep_data(df, form_of_restriction=[], sector=[], year=[]):
     hierarchy['Country'] = hierarchy['Nationality of Targets'].str.extract(r'(.*) \(')[0]
     
     hierarchy = hierarchy.groupby(['Continent', 'Country']).size().reset_index(name='Count').sort_values(by='Count', ascending=False).reset_index(drop=True)
-    percentages = hierarchy.groupby('Continent')['Count'].apply(lambda x: x / x.sum())
-    percentages = percentages.iloc[percentages.index.sortlevel(1)[1]].reset_index(drop=True)
-    hierarchy['Percentage'] = percentages*100
+    hierarchy['Percentage'] = (hierarchy.Count / hierarchy.Count.sum()) * 100
+    # percentages = hierarchy.groupby('Continent')['Count'].apply(lambda x: x / x.sum())
+    # percentages = percentages.iloc[percentages.index.sortlevel(1)[1]].reset_index(drop=True)
+    # hierarchy['Percentage'] = percentages*100
     return df_national, hierarchy.rename(columns={'Count': 'Number of Sanctions'})
 
 st.write("These graphs show China’s sanctions broken down by the nationality of their targets. ")
@@ -56,7 +57,7 @@ hover_template_parent = """
 hover_template_child = """
 <b>Name:</b> %{label}<br>
 <b>Number of Sanctions:</b> %{value:.2f}<br>
-<b>Percent of Contintent's Sanctions:</b> %{customdata[0]:.3}%<br>
+<b>Percent of Total Number of Sanctions:</b> %{customdata[0]:.3}%<br>
 <extra></extra>
 """
 
@@ -70,10 +71,18 @@ def custom_hover(trace):
     return hovers
 
 org, hierarchy = prep_data(df, form_of_restriction, sector, year)
+
+st.write("Treemap")
 treemap = px.treemap(hierarchy, path=['Continent', 'Country'], values='Number of Sanctions', custom_data=["Percentage"])
 treemap.data[0].hovertemplate = custom_hover(treemap.data[0])
 treemap = utils.style_plotly(treemap)
 st.plotly_chart(treemap)
+
+st.write("Sunburst")
+sunburst = px.sunburst(hierarchy, path=['Continent', 'Country'], values='Number of Sanctions', custom_data=["Percentage"])
+sunburst.data[0].hovertemplate = custom_hover(sunburst.data[0])
+sunburst = utils.style_plotly(sunburst)
+st.plotly_chart(sunburst)
 
 hover_template = """
 <b>Name:</b> %{label}<br>
