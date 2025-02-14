@@ -37,7 +37,7 @@ def load_data():
     df = pd.read_excel('CSM.xlsm', sheet_name='Master Sheet')
     df = df.dropna(subset=['Title'])
     df['Year'] = df['Start Date'].dt.year   
-    return df
+    return df.fillna('N/A')
 
 def show_df_rows(df, cols=None):
     if cols:
