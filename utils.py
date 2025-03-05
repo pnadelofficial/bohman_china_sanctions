@@ -20,7 +20,7 @@ def apply_css():
         background-color: #fbfaf2;
     }                  
     </style> 
-    """.strip(), unsafe_allow_html=True) # alth for sidebar: #ece3c7 
+    """.strip(), unsafe_allow_html=True) # alt for sidebar: #ece3c7 
  
 def style_plotly(fig, bgcolor="#f7f3e4", gridcolor="gray"):
     fig.update_layout(

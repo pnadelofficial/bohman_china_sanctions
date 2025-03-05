@@ -34,10 +34,15 @@ hover_template = """
 <extra></extra>
 """
 
-fig_scatter = px.scatter(df_formality, x='Year', y='Title', color='Formality', title='Formality Over Time', labels={'Title': 'Number of Sanctions'}, custom_data=["Formality", "Year", "Title"])
+color_map = {
+    'Formal': "#0e4e88",
+    'Informal': "#d83f03"
+}
+
+fig_scatter = px.scatter(df_formality, x='Year', y='Title', color='Formality', title='Formality Over Time', labels={'Title': 'Number of Sanctions'}, custom_data=["Formality", "Year", "Title"], color_discrete_map=color_map)
 fig_scatter.update_traces(hovertemplate=hover_template)
 
-fig_line = px.line(df_formality, x='Year', y='Title', color='Formality', title='Formality Over Time', labels={'Title': 'Number of Sanctions'}, custom_data=["Formality"])
+fig_line = px.line(df_formality, x='Year', y='Title', color='Formality', title='Formality Over Time', labels={'Title': 'Number of Sanctions'}, custom_data=["Formality"], color_discrete_map=color_map)
 fig_line.update_traces(showlegend=False)
 
 min_year = df['Year'].min()

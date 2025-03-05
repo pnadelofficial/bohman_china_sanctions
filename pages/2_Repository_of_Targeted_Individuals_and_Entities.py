@@ -48,8 +48,13 @@ df_combined, df_ind, df_ent = prep_data(df)
 unique_inds = df_ind['Targeted Individuals'].unique().tolist() 
 unique_ents = df_ent['Targeted Entities'].unique().tolist()
 
-fig_scatter = px.scatter(df_combined, x='Year', y='Title', color='label', title='Targeted Individuals Over Time', labels={'Title': 'Count'})
-fig_line = px.line(df_combined, x='Year', y='Title', color='label', title='Targeted Individuals Over Time', labels={'Title': 'Count'})
+color_map = {
+    'Targeted Individuals': '#d83f03',
+    'Targeted Entities': '#e99374'
+}
+
+fig_scatter = px.scatter(df_combined, x='Year', y='Title', color='label', title='Targeted Individuals Over Time', labels={'Title': 'Count'}, color_discrete_map=color_map)
+fig_line = px.line(df_combined, x='Year', y='Title', color='label', title='Targeted Individuals Over Time', labels={'Title': 'Count'}, color_discrete_map=color_map)
 fig_line.update_traces(showlegend=False)
 
 min_year = df['Year'].min()
