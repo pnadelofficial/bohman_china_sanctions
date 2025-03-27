@@ -3,7 +3,7 @@ import utils
 
 st.image("bohman cms logo.png")
 
-utils.apply_css()
+# utils.apply_css()
 
 st.write("""
 ### Welcome to the China Sanctions Monitor.

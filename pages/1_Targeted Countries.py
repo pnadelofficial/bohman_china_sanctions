@@ -6,7 +6,7 @@ import utils
 st.title('Targeted Countries')  
 
 df = utils.load_data()
-utils.apply_css()
+# utils.apply_css()
 
 ## precentage notes from email - will be important
 #### should be by the ones in the filter
@@ -50,13 +50,13 @@ def is_parent(path):
 
 hover_template_parent = """
 <b>Name:</b> %{label}<br>
-<b>Number of Sanctions:</b> %{value:.2f}<br>
+<b>Number of Sanctions:</b> %{value}<br>
 <extra></extra>
 """
 
 hover_template_child = """
 <b>Name:</b> %{label}<br>
-<b>Number of Sanctions:</b> %{value:.2f}<br>
+<b>Number of Sanctions:</b> %{value:}<br>
 <b>Percent of Total Number of Sanctions:</b> %{customdata[0]:.3}%<br>
 <extra></extra>
 """

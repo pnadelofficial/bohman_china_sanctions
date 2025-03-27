@@ -6,7 +6,7 @@ import utils
 st.title('Formal and Informal Sanctions') 
 
 df = utils.load_data()
-utils.apply_css()
+# utils.apply_css()
 
 ## no clickability on this one
 ## maybe color of chart
@@ -39,21 +39,23 @@ color_map = {
     'Informal': "#d83f03"
 }
 
-fig_scatter = px.scatter(df_formality, x='Year', y='Title', color='Formality', title='Formality Over Time', labels={'Title': 'Number of Sanctions'}, custom_data=["Formality", "Year", "Title"], color_discrete_map=color_map)
-fig_scatter.update_traces(hovertemplate=hover_template)
+fig = px.bar(df_formality, x='Year', y='Title', title='Formality Over Time',  labels={'Title': 'Number of Sanctions'}, color='Formality', custom_data=["Formality", "Year", "Title"], color_discrete_map=color_map)
+fig.update_traces(hovertemplate=hover_template)
+# fig_scatter = px.scatter(df_formality, x='Year', y='Title', color='Formality', title='Formality Over Time', labels={'Title': 'Number of Sanctions'}, custom_data=["Formality", "Year", "Title"], color_discrete_map=color_map)
+# fig_scatter.update_traces(hovertemplate=hover_template)
 
-fig_line = px.line(df_formality, x='Year', y='Title', color='Formality', title='Formality Over Time', labels={'Title': 'Number of Sanctions'}, custom_data=["Formality"], color_discrete_map=color_map)
-fig_line.update_traces(showlegend=False)
+# fig_line = px.line(df_formality, x='Year', y='Title', color='Formality', title='Formality Over Time', labels={'Title': 'Number of Sanctions'}, custom_data=["Formality"], color_discrete_map=color_map)
+# fig_line.update_traces(showlegend=False)
 
-min_year = df['Year'].min()
-max_year = df['Year'].max()
-fig = go.Figure(data=fig_scatter.data + fig_line.data)
-fig.update_xaxes(
-    tickmode='array',
-    tickvals=list(range(min_year, max_year + 1)), 
-    ticktext=[str(year) for year in range(min_year, max_year + 1)]
-)
-fig = utils.style_plotly(fig)
+# min_year = df['Year'].min()
+# max_year = df['Year'].max()
+# fig = go.Figure(data=fig_scatter.data + fig_line.data)
+# fig.update_xaxes(
+#     tickmode='array',
+#     tickvals=list(range(min_year, max_year + 1)), 
+#     ticktext=[str(year) for year in range(min_year, max_year + 1)]
+# )
+# fig = utils.style_plotly(fig)
 event = st.plotly_chart(fig, on_select="rerun")
 # if event:
 #     if event["selection"]["points"]:

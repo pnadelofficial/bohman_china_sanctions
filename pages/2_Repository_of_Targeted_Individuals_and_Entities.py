@@ -7,7 +7,7 @@ import utils
 st.title('Repository of Targeted Individuals and Entities') 
 
 df = utils.load_data()
-utils.apply_css()
+# utils.apply_css()
 
 ## shading underneath the lines
 #### like in sketch 
@@ -53,13 +53,36 @@ color_map = {
     'Targeted Entities': '#e99374'
 }
 
-fig_scatter = px.scatter(df_combined, x='Year', y='Title', color='label', title='Targeted Individuals Over Time', labels={'Title': 'Count'}, color_discrete_map=color_map)
-fig_line = px.line(df_combined, x='Year', y='Title', color='label', title='Targeted Individuals Over Time', labels={'Title': 'Count'}, color_discrete_map=color_map)
-fig_line.update_traces(showlegend=False)
+# fig_scatter = px.scatter(df_combined, x='Year', y='Title', color='label', title='Targeted Individuals Over Time', labels={'Title': 'Count'}, color_discrete_map=color_map)
+# fig_line = px.line(df_combined, x='Year', y='Title', color='label', title='Targeted Individuals Over Time', labels={'Title': 'Count'}, color_discrete_map=color_map)
+# fig_line.update_traces(showlegend=False)
+
+hovertemplate_individuals = """
+<b>Year:</b> %{x}<br>
+<b>Number of Targeted Individuals:</b> %{y}<br>
+<extra></extra>
+""".strip()
+
+hovertemplate_entities = """
+<b>Year:</b> %{x}<br>
+<b>Number of Targeted Entities:</b> %{y}<br>
+<extra></extra>
+""".strip()
 
 min_year = df['Year'].min()
 max_year = df['Year'].max()
-fig = go.Figure(data=fig_scatter.data + fig_line.data)
+fig = go.Figure() # (data=fig_scatter.data + fig_line.data)
+fig.add_trace(go.Scatter(
+    x=df_combined[df_combined['label'] == 'Targeted Entities']['Year'], y=df_combined[df_combined['label'] == 'Targeted Entities']['Title'],
+    fill="tozeroy", fillcolor=color_map['Targeted Entities'], name='Targeted Entities', mode='lines+markers', line=dict(color=color_map['Targeted Entities']),
+    hovertemplate=hovertemplate_entities
+))
+fig.add_trace(go.Scatter(
+    x=df_combined[df_combined['label'] == 'Targeted Individuals']['Year'], y=df_combined[df_combined['label'] == 'Targeted Individuals']['Title'],
+    fill="tozeroy", fillcolor=color_map['Targeted Individuals'], name='Targeted Individuals', mode='lines+markers', line=dict(color=color_map['Targeted Individuals']),
+    hovertemplate=hovertemplate_individuals
+))
+
 fig.update_xaxes(
     tickmode='array',
     tickvals=list(range(min_year, max_year + 1)), 
