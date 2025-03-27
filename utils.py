@@ -23,13 +23,13 @@ def apply_css():
     """.strip(), unsafe_allow_html=True) # alt for sidebar: #ece3c7 
  
 def style_plotly(fig, bgcolor="#f7f3e4", gridcolor="gray"):
-    # fig.update_layout(
-    #     paper_bgcolor=bgcolor,
-    #     plot_bgcolor=bgcolor,
-    #     font_color="black",
-    # )
-    # fig.update_xaxes(gridcolor=gridcolor, griddash='dot')
-    # fig.update_yaxes(gridcolor=gridcolor, griddash='dot')
+    fig.update_layout(
+        paper_bgcolor=bgcolor,
+        plot_bgcolor=bgcolor,
+        font_color="black",
+    )
+    fig.update_xaxes(gridcolor=gridcolor, griddash='dot')
+    fig.update_yaxes(gridcolor=gridcolor, griddash='dot')
     return fig
 
 @st.cache_data
