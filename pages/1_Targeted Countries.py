@@ -108,7 +108,7 @@ st.plotly_chart(sunburst)
 
 hover_template = """
 <b>Name:</b> %{label}<br>
-<b>Number of Sanctions:</b> %{value:.2f}<br>
+<b>Number of Sanctions:</b> %{value}<br>
 <b>Percent of Contintent's Sanctions:</b> %{customdata[0]:.3}%<br>
 <extra></extra>
 """
