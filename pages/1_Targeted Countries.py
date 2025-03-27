@@ -72,33 +72,33 @@ def custom_hover(trace):
 
 org, hierarchy = prep_data(df, form_of_restriction, sector, year)
 
-st.write("Treemap")
-treemap = px.treemap(hierarchy, path=['Continent', 'Country'], values='Number of Sanctions', custom_data=["Percentage"])
-treemap.data[0].hovertemplate = custom_hover(treemap.data[0])
-# paths = []
-# for node in treemap.data[0]['ids']:
-#     paths.append(node)
+# st.write("Treemap")
+# treemap = px.treemap(hierarchy, path=['Continent', 'Country'], values='Number of Sanctions', custom_data=["Percentage"])
+# treemap.data[0].hovertemplate = custom_hover(treemap.data[0])
+# # paths = []
+# # for node in treemap.data[0]['ids']:
+# #     paths.append(node)
 
-# custom_colors = []
-# for path in paths:
-#     if '/' not in path: # is parent
-#         if path == 'Asia': 
-#             custom_colors.append("#d83f03")
-#         elif path == 'Europe':
-#             custom_colors.append("#941651")
-#         elif path == 'North America':
-#             custom_colors.append("#0e4e88")
-#     else:
-#         category, subcategory = path.split('/')
-#         if path == 'Asia': 
-#             custom_colors.append("#e99374")
-#         elif path == 'Europe':
-#             custom_colors.append("#BF758E")
-#         elif path == 'North America':
-#             custom_colors.append("#6786a3")
-# treemap.update_traces(marker=dict(colors=custom_colors))
-treemap = utils.style_plotly(treemap)
-st.plotly_chart(treemap)
+# # custom_colors = []
+# # for path in paths:
+# #     if '/' not in path: # is parent
+# #         if path == 'Asia': 
+# #             custom_colors.append("#d83f03")
+# #         elif path == 'Europe':
+# #             custom_colors.append("#941651")
+# #         elif path == 'North America':
+# #             custom_colors.append("#0e4e88")
+# #     else:
+# #         category, subcategory = path.split('/')
+# #         if path == 'Asia': 
+# #             custom_colors.append("#e99374")
+# #         elif path == 'Europe':
+# #             custom_colors.append("#BF758E")
+# #         elif path == 'North America':
+# #             custom_colors.append("#6786a3")
+# # treemap.update_traces(marker=dict(colors=custom_colors))
+# treemap = utils.style_plotly(treemap)
+# st.plotly_chart(treemap)
 
 st.write("Sunburst")
 sunburst = px.sunburst(hierarchy, path=['Continent', 'Country'], values='Number of Sanctions', custom_data=["Percentage"])
