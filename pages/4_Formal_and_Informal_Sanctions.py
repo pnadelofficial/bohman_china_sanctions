@@ -6,7 +6,7 @@ import utils
 st.title('Formal and Informal Sanctions') 
 
 df = utils.load_data()
-# utils.apply_css()
+utils.apply_css()
 
 ## no clickability on this one
 ## maybe color of chart

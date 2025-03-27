@@ -7,7 +7,7 @@ import utils
 st.title('Repository of Targeted Individuals and Entities') 
 
 df = utils.load_data()
-# utils.apply_css()
+utils.apply_css()
 
 ## shading underneath the lines
 #### like in sketch 

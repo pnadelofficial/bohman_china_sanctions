@@ -6,7 +6,7 @@ import utils
 st.title('Targeted Countries')  
 
 df = utils.load_data()
-# utils.apply_css()
+utils.apply_css()
 
 ## precentage notes from email - will be important
 #### should be by the ones in the filter

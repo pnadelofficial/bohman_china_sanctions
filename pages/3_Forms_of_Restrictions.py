@@ -6,7 +6,7 @@ st.title('Forms of Restriction')
 st.write("This graph shows China’s sanctions broken down by form of restriction and year. Clicking the bars will open a list of all sanctions in the selection.")
 
 df = utils.load_data()
-#utils.apply_css()
+utils.apply_css()
 
 # perhaps a sunburst of restriction/sector by continent
 

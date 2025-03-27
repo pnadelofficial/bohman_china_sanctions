@@ -2,7 +2,7 @@ import streamlit as st
 import utils
 
 st.title('About the China Sanctions Monitor')
-# utils.apply_css()
+utils.apply_css()
 
 st.write("""The China Sanctions Monitor is managed by Viking Bohman and Victor Ferguson. You can read more about us on Substack. 
 
