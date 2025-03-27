@@ -112,13 +112,13 @@ hover_template = """
 <b>Percent of Contintent's Sanctions:</b> %{customdata[0]:.3}%<br>
 <extra></extra>
 """
-color_map = {
-    'North America': '#0e4e88',
-    'Europe': '#941651',
-    'Asia': '#d83f03',
-}
+# color_map = {
+#     'North America': '#0e4e88',
+#     'Europe': '#941651',
+#     'Asia': '#d83f03',
+# }
 
-fig = px.bar(hierarchy, x='Country', y='Number of Sanctions', color='Continent', custom_data=["Percentage"], color_discrete_map=color_map,)
+fig = px.bar(hierarchy, x='Country', y='Number of Sanctions', color='Continent', custom_data=["Percentage"]) #, color_discrete_map=color_map,)
 
 fig = utils.style_plotly(fig)
 fig.update_traces(hovertemplate=hover_template)
