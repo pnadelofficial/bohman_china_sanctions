@@ -35,8 +35,8 @@ hover_template = """
 """
 
 color_map = {
-    'Formal': "#0e4e88",
-    'Informal': "#d83f03"
+    'Informal': "#FF2A2B",
+    'Formal': "#0169CA"
 }
 
 fig = px.bar(df_formality, x='Year', y='Title', title='Formality Over Time',  labels={'Title': 'Number of Sanctions'}, color='Formality', custom_data=["Formality", "Year", "Title"], color_discrete_map=color_map)
@@ -55,15 +55,15 @@ fig.update_traces(hovertemplate=hover_template)
 #     tickvals=list(range(min_year, max_year + 1)), 
 #     ticktext=[str(year) for year in range(min_year, max_year + 1)]
 # )
-# fig = utils.style_plotly(fig)
+fig = utils.style_plotly(fig)
 event = st.plotly_chart(fig, on_select="rerun")
-# if event:
-#     if event["selection"]["points"]:
-#         year = event['selection']['points'][0]['x']
-#         formality = event['selection']['points'][0]['legendgroup']
-#         # if formality == 'Formal':
-#         #     formality = 1
-#         # else:
-#         #     formality = 0
-#         res = df[(df['Year'] == year) & (df['Formality'] == formality)]
-#         utils.show_df_rows(res)
+if event:
+    if event["selection"]["points"]:
+        year = event['selection']['points'][0]['x']
+        formality = event['selection']['points'][0]['legendgroup']
+        # if formality == 'Formal':
+        #     formality = 1
+        # else:
+        #     formality = 0
+        res = df[(df['Year'] == year) & (df['Formality'] == formality)]
+        utils.show_df_rows(res)

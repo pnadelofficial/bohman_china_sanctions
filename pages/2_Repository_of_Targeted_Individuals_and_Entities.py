@@ -49,8 +49,8 @@ unique_inds = df_ind['Targeted Individuals'].unique().tolist()
 unique_ents = df_ent['Targeted Entities'].unique().tolist()
 
 color_map = {
-    'Targeted Individuals': '#d83f03',
-    'Targeted Entities': '#e99374'
+    'Targeted Individuals': '#0169CA',
+    'Targeted Entities': '#FF2A2B'
 }
 
 # fig_scatter = px.scatter(df_combined, x='Year', y='Title', color='label', title='Targeted Individuals Over Time', labels={'Title': 'Count'}, color_discrete_map=color_map)
