@@ -118,7 +118,7 @@ hover_template = """
 #     'Asia': '#d83f03',
 # }
 
-fig = px.bar(hierarchy, x='Country', y='Number of Sanctions', color='Continent', custom_data=["Percentage"]) #, color_discrete_map=color_map,)
+fig = px.bar(hierarchy, x='Country', y='Number of Sanctions', custom_data=["Percentage"]) # color='Continent',, color_discrete_map=color_map,)
 
 fig = utils.style_plotly(fig)
 fig.update_traces(hovertemplate=hover_template)
