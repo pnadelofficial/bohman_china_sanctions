@@ -8,13 +8,6 @@ st.title('Targeted Countries')
 df = utils.load_data()
 utils.apply_css()
 
-## precentage notes from email - will be important
-#### should be by the ones in the filter
-#### Possible to have denominator to be total number of sanctions NOT total number of targets
-#### Could just fix the number ahead of time
-
-## might go back to sunburst and just ignore clickability IN ADDITION to the bar chart
-
 @st.cache_data
 def prep_data(df, form_of_restriction=[], sector=[], year=[]):
     df_national = df[~df['Nationality of Targets'].isnull()]
@@ -34,12 +27,9 @@ def prep_data(df, form_of_restriction=[], sector=[], year=[]):
     
     hierarchy = hierarchy.groupby(['Continent', 'Country']).size().reset_index(name='Count').sort_values(by='Count', ascending=False).reset_index(drop=True)
     hierarchy['Percentage'] = (hierarchy.Count / hierarchy.Count.sum()) * 100
-    # percentages = hierarchy.groupby('Continent')['Count'].apply(lambda x: x / x.sum())
-    # percentages = percentages.iloc[percentages.index.sortlevel(1)[1]].reset_index(drop=True)
-    # hierarchy['Percentage'] = percentages*100
     return df_national, hierarchy.rename(columns={'Count': 'Number of Sanctions'})
 
-st.write("These graphs show China’s sanctions broken down by the nationality of their targets. ")
+st.write("These graphs show China’s sanctions broken down by the nationality of their targets.")
 
 form_of_restriction = st.multiselect('Form of Restriction', df['Form of Restriction'].unique())
 sector = st.multiselect('Sector', list(set([e.strip() for e in df['Sector'].str.split(';').explode().unique()])))
@@ -72,34 +62,6 @@ def custom_hover(trace):
 
 org, hierarchy = prep_data(df, form_of_restriction, sector, year)
 
-# st.write("Treemap")
-# treemap = px.treemap(hierarchy, path=['Continent', 'Country'], values='Number of Sanctions', custom_data=["Percentage"])
-# treemap.data[0].hovertemplate = custom_hover(treemap.data[0])
-# # paths = []
-# # for node in treemap.data[0]['ids']:
-# #     paths.append(node)
-
-# # custom_colors = []
-# # for path in paths:
-# #     if '/' not in path: # is parent
-# #         if path == 'Asia': 
-# #             custom_colors.append("#d83f03")
-# #         elif path == 'Europe':
-# #             custom_colors.append("#941651")
-# #         elif path == 'North America':
-# #             custom_colors.append("#0e4e88")
-# #     else:
-# #         category, subcategory = path.split('/')
-# #         if path == 'Asia': 
-# #             custom_colors.append("#e99374")
-# #         elif path == 'Europe':
-# #             custom_colors.append("#BF758E")
-# #         elif path == 'North America':
-# #             custom_colors.append("#6786a3")
-# # treemap.update_traces(marker=dict(colors=custom_colors))
-# treemap = utils.style_plotly(treemap)
-# st.plotly_chart(treemap)
-
 st.write("Sunburst")
 sunburst = px.sunburst(hierarchy, path=['Continent', 'Country'], values='Number of Sanctions', custom_data=["Percentage"])
 sunburst.data[0].hovertemplate = custom_hover(sunburst.data[0])
@@ -112,22 +74,17 @@ hover_template = """
 <b>Percent of Total Number of Sanctions:</b> %{customdata[0]:.3}%<br>
 <extra></extra>
 """
-# color_map = {
-#     'North America': '#0e4e88',
-#     'Europe': '#941651',
-#     'Asia': '#d83f03',
-# }
 
-fig = px.bar(hierarchy, x='Country', y='Number of Sanctions', custom_data=["Percentage"]) # color='Continent',, color_discrete_map=color_map,)
+fig = px.bar(hierarchy, x='Country', y='Number of Sanctions', custom_data=["Percentage"])
 
 fig = utils.style_plotly(fig)
 fig.update_traces(hovertemplate=hover_template)
 event = st.plotly_chart(fig, on_select="rerun")
 
 if event is None: 
-    st.write("Clicking the bars will open a list of all sanctions in the selection.")
+    st.write("*Clicking the bars will open a list of all sanctions in the selection.*")
 elif not event.get("selection", {}).get("points"): 
-    st.write("Clicking the bars will open a list of all sanctions in the selection.")
+    st.write("*Clicking the bars will open a list of all sanctions in the selection.*")
 
 if event and event.get("selection", {}).get("points"):
     if event["selection"]["points"]:
@@ -139,5 +96,7 @@ if event and event.get("selection", {}).get("points"):
         utils.show_df_rows(res)
 
 st.markdown("""
-<small>Some sanctions are directed at multiple targets of different nationalities. These are counted several times in the visualization of these graphs (one time for each nationality), which results in the total number of visualized cases being higher than the actual number of sanctions. However, the percentages shown when hovering over individual countries accurately reflects the target’s share of the total number of sanctions. For example, if the United States shows a percentage value of 70, this means that 70 percent of the total number of sanctions in the selection targeted the United States.</small> 
+<small><b>Note</b>: Some sanctions target individuals or entities from multiple countries. In these graphs, each targeted nationality is counted separately, meaning that if a sanction includes targets from three different countries, it is counted three times. As such, the total number of entries in the graph is higher than the number of distinct sanctions. However, the percentage shown when hovering over a country accurately reflects that country’s share of all sanctions. For example, if the United States displays a value of 50 percent, it means that half of the sanctions in the selected dataset included at least one U.S. individual or entity.</small> 
 """.strip(), unsafe_allow_html=True)
+
+st.markdown("<footer><small>Assembed by Peter Nadel | Tufts University | Tufts Technology Services | Reserch Technology </small></footer>", unsafe_allow_html=True)

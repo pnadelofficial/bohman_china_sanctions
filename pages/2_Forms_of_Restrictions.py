@@ -8,8 +8,6 @@ st.write("This graph shows China’s sanctions broken down by form of restrictio
 df = utils.load_data()
 utils.apply_css()
 
-# perhaps a sunburst of restriction/sector by continent
-
 @st.cache_data
 def prep_data(df):
     df_for = df.groupby(['Year', 'Form of Restriction']).count()['Title'].reset_index()
@@ -20,7 +18,6 @@ hover_template = """
 <b>Year:</b> %{label}<br>
 <extra></extra>
 """
-# <b>Form of Restriction:</b> %{customdata[0]}<br>
 
 df_for = prep_data(df)
 
@@ -37,9 +34,16 @@ fig = px.bar(df_for, x='Year', y='Title', title='Forms of Restriction Over Time'
 fig.update_traces(hovertemplate=hover_template)
 fig = utils.style_plotly(fig)
 event = st.plotly_chart(fig, on_select="rerun")
-if event:
+if event is None: 
+    st.write("*Clicking the bars will open a list of all sanctions in the selection.*")
+elif not event.get("selection", {}).get("points"): 
+    st.write("*Clicking the bars will open a list of all sanctions in the selection.*")
+
+if event and event.get("selection", {}).get("points"):
     if event["selection"]["points"]:
         year = event['selection']['points'][0]['x']
-        # sanction = event['selection']['points'][0]['legendgroup']
-        res = df[(df['Year'] == year)] # & (df['Form of Restriction'] == sanction)]
+        sanction = event['selection']['points'][0]['legendgroup']
+        res = df[(df['Year'] == year) & (df['Form of Restriction'] == sanction)]
         utils.show_df_rows(res) 
+
+st.markdown("<footer><small>Assembed by Peter Nadel | Tufts University | Tufts Technology Services | Reserch Technology </small></footer>", unsafe_allow_html=True)
