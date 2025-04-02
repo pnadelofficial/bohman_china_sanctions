@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd 
+import numpy as np
 import plotly.graph_objects as go
 import utils
 
@@ -8,19 +9,28 @@ st.title('Repository of Targeted Individuals and Entities')
 df = utils.load_data()
 utils.apply_css()
 
+
+all_years = [
+    2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025
+]
+
 @st.cache_data
 def prep_data(df):
     def split_col_on_semicolon(df, col):
-        df_split = df[~df[col].isnull()]
+        df_split = df[~df[col].replace("N/A", np.nan).isnull()]
         df_split[col] = df_split[col].str.split('; ')
         df_split = df_split.explode(col)
         return df_split
     
     def groupby_on_year_cumsum(df, label):
         df_grouped = df.groupby(['Year']).count().reset_index()
+        years_not_present = list(set(df['Year']) ^ set(all_years))
+        years_not_present_rows = [[year]+[0 for _ in range(len(df.columns[1:]))] for year in years_not_present]
+        years_not_present_rows = pd.DataFrame(years_not_present_rows, columns=df_grouped.columns)
+        df_grouped = pd.concat([years_not_present_rows, df_grouped], ignore_index=True).sort_values(by='Year')
         df_grouped['Title'] = df_grouped['Title'].cumsum()  
         df_grouped['label'] = label
-        return df_grouped[['Year', 'Title', 'label']]
+        return df_grouped[['Year', 'Title', 'label']].reset_index(drop=True)
 
     df_ind = split_col_on_semicolon(df, 'Targeted Individuals')
     df_ent = split_col_on_semicolon(df, 'Targeted Entities')
@@ -45,7 +55,7 @@ color_map = {
 
 hovertemplate_individuals = """
 <b>Year:</b> %{x}<br>
-<b>Number of Targeted Individuals:</b> %{y}<br>
+<b>Number of Targeted Individuals:</b> %{customdata}<br>
 <extra></extra>
 """.strip()
 
@@ -58,14 +68,32 @@ hovertemplate_entities = """
 min_year = df['Year'].min()
 max_year = df['Year'].max()
 fig = go.Figure() 
+
+values_bottom = df_combined[df_combined['label'] == 'Targeted Entities']['Title']
+values_top = df_combined[df_combined['label'] == 'Targeted Individuals']['Title']
+stacked_values = values_bottom + values_top
+x = df_combined[df_combined['label'] == 'Targeted Entities']['Year']
+
 fig.add_trace(go.Scatter(
-    x=df_combined[df_combined['label'] == 'Targeted Entities']['Year'], y=df_combined[df_combined['label'] == 'Targeted Entities']['Title'],
-    fill="tozeroy", fillcolor=color_map['Targeted Entities'], name='Targeted Entities', mode='lines+markers', line=dict(color=color_map['Targeted Entities']),
+    x=x, 
+    y=values_bottom,
+    fill="tozeroy", 
+    fillcolor=color_map['Targeted Entities'], 
+    name='Targeted Entities', 
+    mode='lines+markers', 
+    line=dict(color=color_map['Targeted Entities']),
     hovertemplate=hovertemplate_entities
 ))
+
 fig.add_trace(go.Scatter(
-    x=df_combined[df_combined['label'] == 'Targeted Individuals']['Year'], y=df_combined[df_combined['label'] == 'Targeted Individuals']['Title'],
-    fill="tozeroy", fillcolor=color_map['Targeted Individuals'], name='Targeted Individuals', mode='lines+markers', line=dict(color=color_map['Targeted Individuals']),
+    x=x, 
+    y=stacked_values,
+    fill="tonexty", 
+    fillcolor=color_map['Targeted Individuals'], 
+    name='Targeted Individuals', 
+    mode='lines+markers',
+    line=dict(color=color_map['Targeted Individuals']),
+    customdata=values_top,
     hovertemplate=hovertemplate_individuals
 ))
 
