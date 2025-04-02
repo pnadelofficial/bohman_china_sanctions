@@ -42,7 +42,7 @@ def prep_data(df, form_of_restriction=[], sector=[], year=[]):
 st.write("These graphs show China’s sanctions broken down by the nationality of their targets. ")
 
 form_of_restriction = st.multiselect('Form of Restriction', df['Form of Restriction'].unique())
-sector = st.multiselect('Sector', [e.strip() for e in df['Sector'].str.split(';').explode().unique()])
+sector = st.multiselect('Sector', list(set([e.strip() for e in df['Sector'].str.split(';').explode().unique()])))
 year = st.multiselect('Year', df['Year'].unique())
 
 def is_parent(path):
