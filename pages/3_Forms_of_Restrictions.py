@@ -25,15 +25,15 @@ hover_template = """
 df_for = prep_data(df)
 
 color_map = {
-    'Targeted Sanction': "#5D92D2",
+    'Targeted Sanction': "#84C9FF",
     "Export Control": "#0169CA",
     "Import Control": "#FF2A2B",
     "Obstruction of Foreign Business in China": "#FF6E67",
-    "Boycott": "#84C9FF",
-    "Outbound Tourism Restriction": "#A8D5F7"
+    "Boycott": "#BC4EBA",
+    "Outbound Tourism Restriction": "#D289D1"
 }
 
-fig = px.bar(df_for, x='Year', y='Title', title='Forms of Restriction Over Time',  labels={'Title': 'Number of Sanctions'}, color='Form of Restriction', custom_data=["Form of Restriction"], color_discrete_map=color_map)
+fig = px.bar(df_for, x='Year', y='Title', title='Forms of Restriction Over Time',  labels={'Title': 'Number of Sanctions'}, color='Form of Restriction', custom_data=["Form of Restriction"], color_discrete_map=color_map, category_orders={'Form of Restriction': ["Export Control", 'Targeted Sanction', "Import Control", "Obstruction of Foreign Business in China", "Boycott", "Outbound Tourism Restriction"]})
 fig.update_traces(hovertemplate=hover_template)
 fig = utils.style_plotly(fig)
 event = st.plotly_chart(fig, on_select="rerun")
