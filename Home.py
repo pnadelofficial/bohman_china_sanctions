@@ -17,4 +17,4 @@ Please use the tabs on the left-hand side to access specific data, generate cust
 We value your feedback––please let us know if you spot any inaccuracies in the data or  issues with the visualizations. For questions or suggestions, don’t hesitate to reach out to us at chinasanctionsmonitor@gmail.com.
 """.strip())
 
-st.markdown("<footer><small>Assembed by Peter Nadel | Tufts University | Tufts Technology Services | Reserch Technology </small></footer>", unsafe_allow_html=True)
+st.markdown("<footer><small>Assembed by Peter Nadel | Tufts University | Tufts Technology Services | Research Technology </small></footer>", unsafe_allow_html=True)

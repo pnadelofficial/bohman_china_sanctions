@@ -122,4 +122,4 @@ if ent:
     ent_res = df_ent[(df_ent['Targeted Entities'].str.contains(ent))]
     utils.show_df_rows(ent_res)
 
-st.markdown("<footer><small>Assembed by Peter Nadel | Tufts University | Tufts Technology Services | Reserch Technology </small></footer>", unsafe_allow_html=True)
+st.markdown("<footer><small>Assembed by Peter Nadel | Tufts University | Tufts Technology Services | Research Technology </small></footer>", unsafe_allow_html=True)

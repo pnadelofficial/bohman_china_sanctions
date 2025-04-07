@@ -46,4 +46,4 @@ if event and event.get("selection", {}).get("points"):
         res = df[(df['Year'] == year) & (df['Form of Restriction'] == sanction)]
         utils.show_df_rows(res) 
 
-st.markdown("<footer><small>Assembed by Peter Nadel | Tufts University | Tufts Technology Services | Reserch Technology </small></footer>", unsafe_allow_html=True)
+st.markdown("<footer><small>Assembed by Peter Nadel | Tufts University | Tufts Technology Services | Research Technology </small></footer>", unsafe_allow_html=True)

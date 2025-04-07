@@ -99,4 +99,4 @@ st.markdown("""
 <small><b>Note</b>: Some sanctions target individuals or entities from multiple countries. In these graphs, each targeted nationality is counted separately, meaning that if a sanction includes targets from three different countries, it is counted three times. As such, the total number of entries in the graph is higher than the number of distinct sanctions. However, the percentage shown when hovering over a country accurately reflects that country’s share of all sanctions. For example, if the United States displays a value of 50 percent, it means that half of the sanctions in the selected dataset included at least one U.S. individual or entity.</small> 
 """.strip(), unsafe_allow_html=True)
 
-st.markdown("<footer><small>Assembed by Peter Nadel | Tufts University | Tufts Technology Services | Reserch Technology </small></footer>", unsafe_allow_html=True)
+st.markdown("<footer><small>Assembed by Peter Nadel | Tufts University | Tufts Technology Services | Research Technology </small></footer>", unsafe_allow_html=True)

@@ -15,4 +15,4 @@ Rather than structuring the database around observations of sanctions ‘[episod
 For his exceptional work in structuring the data and developing the visualizations that power this platform, we are extremely grateful to Peter Nadel.       
 """)
 
-st.markdown("<footer><small>Assembed by Peter Nadel | Tufts University | Tufts Technology Services | Reserch Technology </small></footer>", unsafe_allow_html=True)
+st.markdown("<footer><small>Assembed by Peter Nadel | Tufts University | Tufts Technology Services | Research Technology </small></footer>", unsafe_allow_html=True)
