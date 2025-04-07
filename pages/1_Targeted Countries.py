@@ -62,7 +62,6 @@ def custom_hover(trace):
 
 org, hierarchy = prep_data(df, form_of_restriction, sector, year)
 
-st.write("Sunburst")
 sunburst = px.sunburst(hierarchy, path=['Continent', 'Country'], values='Number of Sanctions', custom_data=["Percentage"])
 sunburst.data[0].hovertemplate = custom_hover(sunburst.data[0])
 sunburst = utils.style_plotly(sunburst)
@@ -82,9 +81,9 @@ fig.update_traces(hovertemplate=hover_template)
 event = st.plotly_chart(fig, on_select="rerun")
 
 if event is None: 
-    st.write("*Clicking the bars will open a list of all sanctions in the selection.*")
+    st.write("*Click the bars to open a list of all sanctions in the selection.*")
 elif not event.get("selection", {}).get("points"): 
-    st.write("*Clicking the bars will open a list of all sanctions in the selection.*")
+    st.write("*Click the bars to open a list of all sanctions in the selection.*")
 
 if event and event.get("selection", {}).get("points"):
     if event["selection"]["points"]:

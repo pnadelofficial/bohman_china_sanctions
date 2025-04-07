@@ -2,8 +2,8 @@ import streamlit as st
 import plotly.express as px
 import utils
 
-st.title('Forms of Restriction') 
-st.write("This graph shows China’s sanctions broken down by form of restriction and year. Clicking the bars will open a list of all sanctions in the selection.")
+st.title('Form of Restrictions') 
+st.write("This graph shows China’s sanctions broken down by form of restriction and year.")
 
 df = utils.load_data()
 utils.apply_css()
@@ -35,9 +35,9 @@ fig.update_traces(hovertemplate=hover_template)
 fig = utils.style_plotly(fig)
 event = st.plotly_chart(fig, on_select="rerun")
 if event is None: 
-    st.write("*Clicking the bars will open a list of all sanctions in the selection.*")
+    st.write("*Click the bars to open a list of all sanctions in the selection.*")
 elif not event.get("selection", {}).get("points"): 
-    st.write("*Clicking the bars will open a list of all sanctions in the selection.*")
+    st.write("*Click the bars to open a list of all sanctions in the selection.*")
 
 if event and event.get("selection", {}).get("points"):
     if event["selection"]["points"]:

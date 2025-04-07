@@ -49,7 +49,7 @@ unique_inds = df_ind['Targeted Individuals'].unique().tolist()
 unique_ents = df_ent['Targeted Entities'].unique().tolist()
 
 color_map = {
-    'Targeted Individuals': '#0169CA',
+    'Targeted Individuals': '#FF6E67',
     'Targeted Entities': '#FF2A2B'
 }
 
@@ -108,8 +108,6 @@ event = st.plotly_chart(fig, on_select="rerun")
 
 st.write("""
 *Use these fields to search for individuals and entities targeted by China’s sanctions, and to identify the specific restrictions imposed on them.*
-
-Please note that this is not a list of ‘active’ sanctions, but a repository of individuals and entities that have at some point in time been targeted by PRC sanctions. In some cases, restrictions against the target may no longer be in force.
 """.strip())
 
 ind = st.selectbox('Search Targeted Individuals', unique_inds, index=None, placeholder="Type name here")
@@ -122,4 +120,5 @@ if ent:
     ent_res = df_ent[(df_ent['Targeted Entities'].str.contains(ent))]
     utils.show_df_rows(ent_res)
 
+st.write("Please note that this is not a list of ‘active’ sanctions, but a repository of individuals and entities that have at some point in time been targeted by PRC sanctions. In some cases, restrictions against the target may no longer be in force.")
 st.markdown("<footer><small>Assembed by Peter Nadel | Tufts University | Tufts Technology Services | Research Technology </small></footer>", unsafe_allow_html=True)

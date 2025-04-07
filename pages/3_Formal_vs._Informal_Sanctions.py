@@ -39,9 +39,9 @@ fig.update_traces(hovertemplate=hover_template)
 fig = utils.style_plotly(fig)
 event = st.plotly_chart(fig, on_select="rerun")
 if event is None: 
-    st.write("*Clicking the bars will open a list of all sanctions in the selection.*")
+    st.write("*Click the bars to open a list of all sanctions in the selection.*")
 elif not event.get("selection", {}).get("points"): 
-    st.write("*Clicking the bars will open a list of all sanctions in the selection.*")
+    st.write("*Click the bars to open a list of all sanctions in the selection.*")
 
 if event and event.get("selection", {}).get("points"):
     if event["selection"]["points"]:
