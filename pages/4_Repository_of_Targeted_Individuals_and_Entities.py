@@ -112,12 +112,14 @@ st.write("""
 
 ind = st.selectbox('Search Targeted Individuals', unique_inds, index=None, placeholder="Type name here")
 if ind:
-    ind_res = df_ind[(df_ind['Targeted Individuals'].str.contains(ind))]
+    ids_for_lookup = df_ind[(df_ind['Targeted Individuals'].str.contains(ind))].index
+    ind_res = pd.DataFrame(df.iloc[ids_for_lookup])
     utils.show_df_rows(ind_res)
 
 ent = st.selectbox('Search Targeted Entities', unique_ents, index=None, placeholder="Type name here")
 if ent:
-    ent_res = df_ent[(df_ent['Targeted Entities'].str.contains(ent))]
+    ids_for_lookup = df_ent[(df_ent['Targeted Entities'].str.contains(ent))].index
+    ent_res = pd.DataFrame(df.iloc[ids_for_lookup])
     utils.show_df_rows(ent_res)
 
 st.write("Please note that this is not a list of ‘active’ sanctions, but a repository of individuals and entities that have at some point in time been targeted by PRC sanctions. In some cases, restrictions against the target may no longer be in force.")
