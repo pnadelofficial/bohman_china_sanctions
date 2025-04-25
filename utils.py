@@ -3,23 +3,37 @@ import pandas as pd
 
 def apply_css():
     return st.markdown("""
-    <style>
-    [data-testid="stAppViewContainer"] {
-        background-color: #f7f3e4;
-    }
-    [data-testid="stHeader"] {
-        background-color: #f7f3e4;
-    }       
-    [data-testid="stSidebarContent"] {
-        background-color:  #fbfaf2; 
-    }
-    div[data-baseweb="select"] > div {
-        background-color:  #fbfaf2; 
-    }
-    ul[data-testid="stSelectboxVirtualDropdown"] {
-        background-color: #fbfaf2;
-    }                  
-    </style> 
+        <style>
+        [data-testid="stAppViewContainer"] {
+            background-color: #f7f3e4;
+            color: #333333 !important; /* Force dark text */
+        }
+        [data-testid="stHeader"] {
+            background-color: #f7f3e4;
+            color: #333333 !important;
+        }       
+        [data-testid="stSidebarContent"] {
+            background-color: #fbfaf2;
+            color: #333333 !important;
+        }
+        div[data-baseweb="select"] > div {
+            background-color: #fbfaf2;
+            color: #333333 !important;
+        }
+        /* Fix dropdowns */
+        ul[data-testid="stSelectboxVirtualDropdown"] {
+            background-color: #fbfaf2;
+            color: #333333 !important;
+        }
+        /* Ensure all text elements use dark text */
+        p, div, span, label, .stMarkdown, .stText {
+            color: #333333 !important;
+        }
+        /* Fix specific Streamlit components if needed */
+        .stTextInput > div > div > input, .stTextArea > div > div > textarea {
+            color: #333333 !important;
+        }
+        </style>
     """.strip(), unsafe_allow_html=True) # alt for sidebar: #ece3c7 
  
 def style_plotly(fig, bgcolor="#f7f3e4", gridcolor="gray"):
