@@ -1,5 +1,12 @@
 import streamlit as st
 import pandas as pd
+from streamlit_theme import st_theme
+
+MODE = st_theme()['base']
+if "mode" not in st.session_state:
+    st.session_state.mode = MODE
+if st.session_state.mode != MODE:
+    st.session_state.mode = MODE
 
 def apply_css():
     return st.markdown("""
@@ -16,6 +23,10 @@ def apply_css():
             background-color: #fbfaf2;
             color: #333333 !important;
         }
+        [data-testid="stHeadingWithActionElements "] {
+            background-color: #fbfaf2;
+            color: #333333 !important;
+        }
         div[data-baseweb="select"] > div {
             background-color: #fbfaf2;
             color: #333333 !important;
@@ -26,16 +37,38 @@ def apply_css():
             color: #333333 !important;
         }
         /* Ensure all text elements use dark text */
-        p, div, span, label, .stMarkdown, .stText {
+        p, div, span, label, .stMarkdown, .stText, h3, h2, h1 {
             color: #333333 !important;
         }
         /* Fix specific Streamlit components if needed */
         .stTextInput > div > div > input, .stTextArea > div > div > textarea {
             color: #333333 !important;
         }
+        [data-testid="stExpander"] {
+            border: 1px solid #555555 !important;
+            background-color: #f7f3e4 !important;
+            border-radius: 0.5rem !important;
+            overflow: hidden !important;
+        }
+        .streamlit-expanderHeader {
+            color: #333333 !important;
+            background-color: #f7f3e4 !important;
+            border-radius: 0.5rem !important;
+        }
+        [data-testid="stExpanderDetails"] {
+            background-color: #fbfaf2 !important;
+            color: #333333 !important;
+            border-top: 1px solid #555555 !important;
+        }
+        [data-testid="stExpander"] svg {
+            fill: #333333 !important;
+        }
+        [data-testid="stExpander"] [aria-expanded="false"] {
+            border-radius: 0.5rem !important;
+        }
         </style>
     """.strip(), unsafe_allow_html=True) # alt for sidebar: #ece3c7 
- 
+
 def style_plotly(fig, bgcolor="#f7f3e4", gridcolor="gray"):
     fig.update_layout(
         paper_bgcolor=bgcolor,
@@ -44,6 +77,15 @@ def style_plotly(fig, bgcolor="#f7f3e4", gridcolor="gray"):
     )
     fig.update_xaxes(gridcolor=gridcolor, griddash='dot')
     fig.update_yaxes(gridcolor=gridcolor, griddash='dot')
+
+    is_dark_mode = MODE == "dark"
+    if is_dark_mode:
+        fig.update_layout(title_font_color="black")
+        fig.update_xaxes(title_font_color="black")
+        fig.update_yaxes(title_font_color="black")
+        fig.update_layout(legend_font_color="black")
+        fig.update_layout(legend_title_font_color="black")
+        fig.update_xaxes(tickfont_color="black")
     return fig
 
 @st.cache_data
@@ -61,6 +103,7 @@ def show_df_rows(df, cols=None):
         esc_title = row['Title'].replace('$', r'\$')
         with st.expander(f"{esc_title}"):
             row = row.fillna('N/A')
+            st.write("\n")
             st.write(f"**Imposition Date**: {row['Imposition Date'].strftime('%B, %Y')}")
             # st.write(f"**Counter vs. Primary**: {row['Counter vs. Primary']}")
             # st.write(f"**Issue Area of Perceived Provocation**: {row['Issue Area of Perceived Provocation']}")

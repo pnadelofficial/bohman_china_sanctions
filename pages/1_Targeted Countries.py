@@ -62,7 +62,7 @@ def custom_hover(trace):
 
 org, hierarchy = prep_data(df, form_of_restriction, sector, year)
 
-sunburst = px.sunburst(hierarchy, path=['Continent', 'Country'], values='Number of Sanctions', custom_data=["Percentage"])
+sunburst = px.sunburst(hierarchy, path=['Continent', 'Country'], values='Number of Sanctions', custom_data=["Percentage"], title="Targeted Countries by Continent",)
 sunburst.data[0].hovertemplate = custom_hover(sunburst.data[0])
 sunburst = utils.style_plotly(sunburst)
 st.plotly_chart(sunburst)
@@ -74,7 +74,7 @@ hover_template = """
 <extra></extra>
 """
 
-fig = px.bar(hierarchy, x='Country', y='Number of Sanctions', custom_data=["Percentage"])
+fig = px.bar(hierarchy, x='Country', y='Number of Sanctions', custom_data=["Percentage"], title="Targeted Countries by Number of Sanctions",)
 
 fig = utils.style_plotly(fig)
 fig.update_traces(hovertemplate=hover_template)

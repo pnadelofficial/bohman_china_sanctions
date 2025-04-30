@@ -100,9 +100,13 @@ fig.add_trace(go.Scatter(
 fig.update_xaxes(
     tickmode='array',
     tickvals=list(range(min_year, max_year + 1)), 
-    ticktext=[str(year) for year in range(min_year, max_year + 1)]
+    ticktext=[str(year) for year in range(min_year, max_year + 1)],
 )
 
+# add title to fig
+fig.update_layout(
+    title='Cumulative Number of Targeted Individuals and Entities by Year',
+)
 fig = utils.style_plotly(fig)
 event = st.plotly_chart(fig, on_select="rerun")
 
