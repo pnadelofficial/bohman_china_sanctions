@@ -86,6 +86,7 @@ def style_plotly(fig, bgcolor="#f7f3e4", gridcolor="gray"):
         fig.update_layout(legend_font_color="black")
         fig.update_layout(legend_title_font_color="black")
         fig.update_xaxes(tickfont_color="black")
+        fig.update_yaxes(tickfont_color="black")
     return fig
 
 @st.cache_data
