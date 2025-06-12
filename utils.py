@@ -1,12 +1,20 @@
 import streamlit as st
 import pandas as pd
 from streamlit_theme import st_theme
+import urllib.request
+import os
 
 MODE = st_theme()['base']
 if "mode" not in st.session_state:
     st.session_state.mode = MODE
 if st.session_state.mode != MODE:
     st.session_state.mode = MODE
+
+@st.cache_resource
+def download_data():
+    if "PRC Sanctions Data.xlsm" not in os.listdir("."):
+        dl_url = "https://tufts.box.com/shared/static/4exaz77iml6a11uei4su4rzedvl2nlwm.xlsm"
+        urllib.request.urlretrieve(dl_url)
 
 def apply_css():
     return st.markdown("""
