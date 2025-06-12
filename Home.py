@@ -3,6 +3,7 @@ import utils
 
 st.image("bohman cms logo.png")
 
+utils.download_data()
 utils.apply_css()
 
 st.write("""
