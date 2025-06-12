@@ -13,7 +13,7 @@ if st.session_state.mode != MODE:
 @st.cache_resource
 def download_data():
     if "PRC Sanctions Data.xlsm" not in os.listdir("."):
-        dl_url = "https://tufts.box.com/shared/static/4exaz77iml6a11uei4su4rzedvl2nlwm.xlsm"
+        dl_url = "https://tufts.box.com/shared/static/62w43uiqflnr74yejuiqnbzsrukif3x8.xlsm"
         urllib.request.urlretrieve(dl_url)
 
 def apply_css():
