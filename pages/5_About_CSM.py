@@ -6,11 +6,7 @@ utils.apply_css()
 
 st.write("""CSM is managed by [Viking Bohman](https://kinacentrum.se/en/our-staff/viking-bohman/) and [Victor Ferguson](https://www.victoraferguson.com/). The database is part of an ongoing joint research project. If you use the data, please cite:
 
-st.markdown("""
-<div style="text-indent: 2em; line-height: 1.6;">
 Bohman, Viking, Audrye Wong, and Victor A. Ferguson, ‘China’s Sanctions Gambit: Formal and Informal Economic Coercion in the Second Trade War’, Swedish National China Centre, Swedish Institute of International Affairs, 2025.
-</div>
-""", unsafe_allow_html=True)
 
 While we regularly update the database with a view to maintaining a comprehensive record of PRC sanctions, we cannot guarantee – nor do we claim – it is exhaustive. This is particularly true for earlier years when China’s actions in this space were less closely monitored, and for ‘informal’ sanctions, which are rarely announced publicly and sometimes contested.
  
