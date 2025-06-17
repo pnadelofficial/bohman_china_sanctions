@@ -4,7 +4,7 @@ import utils
 st.title('About the China Sanctions Monitor')
 utils.apply_css()
 
-st.write("""CSM is managed by [Viking Bohman](https://kinacentrum.se/en/our-staff/viking-bohman/) and [Victor Ferguson](https://www.victoraferguson.com/). The database is part of an ongoing joint research project. If you use the data, please cite:
+st.write("""CSM is managed by [Viking Bohman](https://kinacentrum.se/en/our-staff/viking-bohman/) and [Victor Ferguson](https://www.victoraferguson.com/). The database is part of an ongoing joint research project together with Audrye Wong. If you use the data, please cite:
 
 Bohman, Viking, Audrye Wong, and Victor A. Ferguson, ‘China’s Sanctions Gambit: Formal and Informal Economic Coercion in the Second Trade War’, Swedish National China Centre, Swedish Institute of International Affairs, 2025.
 
