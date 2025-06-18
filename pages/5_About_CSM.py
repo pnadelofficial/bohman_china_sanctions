@@ -4,9 +4,7 @@ import utils
 st.title('About the China Sanctions Monitor')
 utils.apply_css()
 
-st.write("""CSM is managed by [Viking Bohman](https://kinacentrum.se/en/our-staff/viking-bohman/) and [Victor Ferguson](https://www.victoraferguson.com/). The database is part of an ongoing joint research project together with Audrye Wong. If you use the data, please cite:
-
-Bohman, Viking, Audrye Wong, and Victor A. Ferguson, ‘China’s Sanctions Gambit: Formal and Informal Economic Coercion in the Second Trade War’, Swedish National China Centre, Swedish Institute of International Affairs, 2025, [https://kinacentrum.se/en/publications/chinas-sanctions-gambit-formal-and-informal-economic-coercion-in-the-second-trade-war/](https://kinacentrum.se/en/publications/chinas-sanctions-gambit-formal-and-informal-economic-coercion-in-the-second-trade-war/)
+st.write("""CSM is managed by [Viking Bohman](https://kinacentrum.se/en/our-staff/viking-bohman/) and [Victor Ferguson](https://www.victoraferguson.com/). The database is part of an ongoing joint research project together with Audrye Wong. 
 
 While we regularly update the database with a view to maintaining a comprehensive record of PRC sanctions, we cannot guarantee – nor do we claim – it is exhaustive. This is particularly true for earlier years when China’s actions in this space were less closely monitored, and for ‘informal’ sanctions, which are rarely announced publicly and sometimes contested.
  
