@@ -19,7 +19,7 @@ If you use the data, please cite:
 
 Bohman, Viking, Audrye Wong, and Victor A. Ferguson, ‘China’s Sanctions Gambit: Formal and Informal Economic Coercion in the Second Trade War’, Swedish National China Centre, Swedish Institute of International Affairs, 2025, [https://kinacentrum.se/en/publications/chinas-sanctions-gambit-formal-and-informal-economic-coercion-in-the-second-trade-war/](https://kinacentrum.se/en/publications/chinas-sanctions-gambit-formal-and-informal-economic-coercion-in-the-second-trade-war/)
  
-We value your feedback––please let us know if you spot any inaccuracies in the data or  issues with the visualizations. For questions or suggestions, don’t hesitate to reach out to us at chinasanctionsmonitor@gmail.com.
+We value your feedback – please let us know if you spot any inaccuracies in the data or  issues with the visualizations. For questions or suggestions, don’t hesitate to reach out to us at chinasanctionsmonitor@gmail.com.
 """.strip())
 
 st.markdown("<footer><small>Assembed by Peter Nadel | Tufts University | Tufts Technology Services | Research Technology </small></footer>", unsafe_allow_html=True)
