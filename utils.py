@@ -15,6 +15,7 @@ FILENAME = "PRC Sanctions Data.xlsm"
 @st.cache_resource
 def download_data():
     if FILENAME not in os.listdir("."):
+        print("Downloading data...")
         dl_url = "https://tufts.box.com/shared/static/62w43uiqflnr74yejuiqnbzsrukif3x8.xlsm"
         urllib.request.urlretrieve(dl_url, FILENAME)
 
