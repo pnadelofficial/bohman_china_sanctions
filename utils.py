@@ -10,12 +10,13 @@ if "mode" not in st.session_state:
 if st.session_state.mode != MODE:
     st.session_state.mode = MODE
 
+FILENAME = "PRC Sanctions Data.xlsm"
+
 @st.cache_resource
 def download_data():
-    filename = "PRC Sanctions Data.xlsm"
-    if filename not in os.listdir("."):
+    if FILENAME not in os.listdir("."):
         dl_url = "https://tufts.box.com/shared/static/62w43uiqflnr74yejuiqnbzsrukif3x8.xlsm"
-        urllib.request.urlretrieve(dl_url, filename)
+        urllib.request.urlretrieve(dl_url, FILENAME)
 
 def apply_css():
     return st.markdown("""
@@ -100,7 +101,9 @@ def style_plotly(fig, bgcolor="#f7f3e4", gridcolor="gray"):
 
 @st.cache_data
 def load_data():
-    df = pd.read_excel('PRC Sanctions Data.xlsm', sheet_name='Master Sheet')
+    print(os.listdir("."))
+    print(os.getcwd())
+    df = pd.read_excel(FILENAME, sheet_name='Master Sheet')
     df = df.dropna(subset=['Title'])
     df['Year'] = df['Imposition Date'].dt.year   
     return df.fillna('N/A')
