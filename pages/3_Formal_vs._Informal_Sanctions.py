@@ -4,6 +4,8 @@ import utils
 
 st.title('Formal and Informal Sanctions') 
 
+utils.download_data()
+
 df = utils.load_data()
 utils.apply_css()
 

@@ -5,6 +5,8 @@ import utils
 
 st.title('Targeted Countries')  
 
+utils.download_data()
+
 df = utils.load_data()
 utils.apply_css()
 

@@ -5,6 +5,8 @@ import utils
 st.title('Form of Restrictions') 
 st.write("This graph shows China’s sanctions broken down by form of restriction and year.")
 
+utils.download_data()
+
 df = utils.load_data()
 utils.apply_css()
 

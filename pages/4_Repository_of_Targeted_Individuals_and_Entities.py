@@ -6,6 +6,8 @@ import utils
 
 st.title('Repository of Targeted Individuals and Entities') 
 
+utils.download_data()
+
 df = utils.load_data()
 utils.apply_css()
 
