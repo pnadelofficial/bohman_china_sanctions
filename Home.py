@@ -1,7 +1,7 @@
 import streamlit as st  
 import utils
 
-st.image("bohman cms logo.png")
+st.image("bohman_cms_logo.png")
 
 utils.download_data()
 utils.apply_css()
