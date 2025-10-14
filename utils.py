@@ -1,8 +1,11 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import pandas as pd
 from streamlit_theme import st_theme
 import urllib.request
 import os
+
+GA_ID = os.getenv('GA_MEASUREMENT_ID', 'G-XXXXXXXXXX')
 
 MODE = st_theme()['base']
 if "mode" not in st.session_state:
@@ -18,6 +21,19 @@ def download_data():
         print("Downloading data...")
         dl_url = "https://tufts.box.com/shared/static/62w43uiqflnr74yejuiqnbzsrukif3x8.xlsm"
         urllib.request.urlretrieve(dl_url, FILENAME)
+
+def add_google_analytics():
+    if GA_ID:
+        ga_code = f"""
+        <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){{dataLayer.push(arguments);}}
+          gtag('js', new Date());
+          gtag('config', '{GA_ID}');
+        </script>
+        """
+        components.html(ga_code, height=0)
 
 def apply_css():
     return st.markdown("""
