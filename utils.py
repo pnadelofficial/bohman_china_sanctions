@@ -5,7 +5,7 @@ from streamlit_theme import st_theme
 import urllib.request
 import os
 
-GA_ID = os.getenv('GA_MEASUREMENT_ID', 'G-XXXXXXXXXX')
+GA_ID = os.getenv('GA_MEASUREMENT_ID', 'G-5QPLLXKM67')
 
 MODE = st_theme()['base']
 if "mode" not in st.session_state:
