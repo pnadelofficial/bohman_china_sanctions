@@ -1,8 +1,6 @@
 import streamlit as st  
 import utils
 
-utils.add_google_analytics()
-
 st.image("bohman_cms_logo.png")
 
 utils.download_data()
