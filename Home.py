@@ -13,7 +13,7 @@ This website serves as a resource for tracking how the People’s Republic of Ch
  
 The data allows users to visualize the full spectrum of PRC sanctions, ranging from informal sanctions such as state-supported consumer boycotts against foreign businesses to formal sanctions like asset freezes, entry bans and export controls. You can read more about how we collect data in the ‘About CSM’ section.
  
-Please use the tabs on the left-hand side to access specific data, generate customized graphs, and explore our searchable repository of targeted individuals and entities. We regularly update the database and will introduce additional features over time.
+Please use the tabs on the left-hand side to access specific data, generate customized graphs, and explore our searchable repository of targeted individuals and entities. We regularly update the database and will introduce additional features over time. The data was last updated on 2025-12-07.
 
 If you use the data, please cite:
 
