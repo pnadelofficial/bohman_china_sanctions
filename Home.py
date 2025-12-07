@@ -17,6 +17,7 @@ Please use the tabs on the left-hand side to access specific data, generate cust
 
 If you use the data, please cite:
 
+Bohman, Viking, Audrye Wong & Victor A. Ferguson, "The Old Logic Behind China’s New Economic Weapons", *The Washington Quarterly*, 2025, 48(3), 25–45.  
 
 We value your feedback – please let us know if you spot any inaccuracies in the data or  issues with the visualizations. For questions or suggestions, don’t hesitate to reach out to us at chinasanctionsmonitor@gmail.com.
 """.strip())
