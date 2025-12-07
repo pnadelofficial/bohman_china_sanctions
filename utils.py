@@ -25,15 +25,16 @@ def download_data():
 def add_google_analytics():
     if GA_ID:
         ga_code = f"""
-        <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){{dataLayer.push(arguments);}}
-          gtag('js', new Date());
-          gtag('config', '{GA_ID}');
-        </script>
-        """
-        components.html(ga_code, height=0)
+<!-- Google tag (Google Analytics) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', '{GA_ID}');
+</script>
+"""
+        st.markdown(ga_code, unsafe_allow_html=True)
 
 def apply_css():
     return st.markdown("""
