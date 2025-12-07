@@ -5,8 +5,6 @@ from streamlit_theme import st_theme
 import urllib.request
 import os
 
-GA_ID = "G-5QPLLXKM67"
-
 MODE = st_theme()['base']
 if "mode" not in st.session_state:
     st.session_state.mode = MODE
@@ -21,20 +19,6 @@ def download_data():
         print("Downloading data...")
         dl_url = "https://tufts.box.com/shared/static/62w43uiqflnr74yejuiqnbzsrukif3x8.xlsm"
         urllib.request.urlretrieve(dl_url, FILENAME)
-
-def add_google_analytics():
-    if GA_ID:
-        ga_code = f"""
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){{dataLayer.push(arguments);}}
-  gtag('js', new Date());
-  gtag('config', '{GA_ID}');
-</script>
-"""
-        st.markdown(ga_code, unsafe_allow_html=True)
 
 def apply_css():
     return st.markdown("""
