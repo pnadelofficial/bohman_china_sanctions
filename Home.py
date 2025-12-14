@@ -20,9 +20,10 @@ If you use the data, please cite:
 Bohman, Viking, Audrye Wong & Victor A. Ferguson, ["The Old Logic Behind China’s New Economic Weapons"](https://www.tandfonline.com/doi/full/10.1080/0163660X.2025.2554476), *The Washington Quarterly*, 2025, 48(3), 25–45.  
 
 We value your feedback – please let us know if you spot any inaccuracies in the data or  issues with the visualizations. For questions or suggestions, don’t hesitate to reach out to us at chinasanctionsmonitor@gmail.com.
-""".strip())
 
 Data last updated 2025-12-14.
+
+""".strip())
 
 st.markdown("<footer><small>Assembed by Peter Nadel | Tufts University | Tufts Technology Services | Research Technology </small></footer>", unsafe_allow_html=True)
 
