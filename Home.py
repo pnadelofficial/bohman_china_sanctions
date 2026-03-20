@@ -22,7 +22,7 @@ Bohman, Viking, Audrye Wong & Victor A. Ferguson, ["The Old Logic Behind China�
 We value your feedback – please let us know if you spot any inaccuracies in the data or  issues with the visualizations. For questions or suggestions, don’t hesitate to reach out to us at chinasanctionsmonitor@gmail.com.
 
 
-Data last updated 2026-01-01.
+Data last updated 2026-03-20.
 
 """.strip())
 
