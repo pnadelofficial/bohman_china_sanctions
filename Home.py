@@ -1,13 +1,24 @@
 import streamlit as st
 import utils
 
-st.image("bohman_cms_logo.png")
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    st.image("bohman_cms_logo.png")
 
 try:
     utils.download_data()
 except Exception as e:
     utils.apply_css()
-    st.warning("## 🚧 Temporarily Under Maintenance\n\nWe are currently updating the China Sanctions Monitor. Please check back soon.\n\nFor questions, contact chinasanctionsmonitor@gmail.com.")
+    st.markdown("""
+        <div style="text-align: center; padding: 2rem;">
+            <p style="font-size: 1.1rem;">
+                China Sanctions Monitor is currently being updated. Please check back soon.
+                <br><br>
+                If you have any questions, please contact
+                <a href="mailto:chinasanctionsmonitor@gmail.com">chinasanctionsmonitor@gmail.com</a>.
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
     st.stop()
 
 utils.apply_css()
