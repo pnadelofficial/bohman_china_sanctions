@@ -1,9 +1,15 @@
-import streamlit as st  
+import streamlit as st
 import utils
 
 st.image("bohman_cms_logo.png")
 
-utils.download_data()
+try:
+    utils.download_data()
+except Exception as e:
+    utils.apply_css()
+    st.warning("## 🚧 Temporarily Under Maintenance\n\nWe are currently updating the China Sanctions Monitor. Please check back soon.\n\nFor questions, contact chinasanctionsmonitor@gmail.com.")
+    st.stop()
+
 utils.apply_css()
 
 st.write("""

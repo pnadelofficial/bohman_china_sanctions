@@ -17,7 +17,9 @@ FILENAME = "PRC Sanctions Data.xlsm"
 def download_data():
     if FILENAME not in os.listdir("."):
         print("Downloading data...")
-        dl_url = "https://tufts.box.com/shared/static/62w43uiqflnr74yejuiqnbzsrukif3x8.xlsm"
+        dl_url = os.environ.get("DATA_URL")
+        if not dl_url:
+            raise ValueError("DATA_URL environment variable is not set")
         urllib.request.urlretrieve(dl_url, FILENAME)
 
 def apply_css():
